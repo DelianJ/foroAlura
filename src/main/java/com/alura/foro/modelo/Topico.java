@@ -41,6 +41,10 @@ public class Topico {
     public Topico() {
 
     }
+    
+    public Topico(Long id_topico) {
+        this.id_topico = id_topico;
+    }
 
     public Topico(String titulo, String mensaje, Curso curso) {
         this.titulo = titulo;

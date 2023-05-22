@@ -1,5 +1,6 @@
 package com.alura.foro.modelo;
 
+import com.alura.foro.domain.respuesta.DatosRegistrarRespuesta;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +24,18 @@ public class Respuesta {
     private Topico topico;
     private LocalDateTime fechaCreacion = LocalDateTime.now();
     @ManyToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario autor;
     private Boolean solucion = false;
+
+    public Respuesta() {
+    }
+
+    public Respuesta(DatosRegistrarRespuesta datosRegistrarRespuesta) {
+        this.mensaje = datosRegistrarRespuesta.mensaje();
+        this.topico = new Topico(datosRegistrarRespuesta.id_topico());
+        this.autor = new Usuario(datosRegistrarRespuesta.id_usuario());
+    }
 
     @Override
     public int hashCode() {
